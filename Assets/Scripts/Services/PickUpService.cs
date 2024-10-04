@@ -64,7 +64,8 @@ namespace CatchMe.Services
 
         private void SpawnPickUp(PickUp pickUpPrefab)
         {
-            Vector3 spawnPosition = new(transform.position.x, _spawnHeight, transform.position.z);
+            float randomX = Random.Range(-4f, 4f);
+            Vector3 spawnPosition = new(randomX, _spawnHeight, transform.position.z);
             PickUp pickUp = Instantiate(pickUpPrefab, spawnPosition, Quaternion.identity);
             Rigidbody2D component = pickUp.GetComponent<Rigidbody2D>();
             if (component != null)
@@ -86,7 +87,6 @@ namespace CatchMe.Services
 
                 _currentFallSpeed += _fallSpeedIncrement;
             }
-            
         }
 
         #endregion
