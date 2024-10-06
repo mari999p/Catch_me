@@ -13,26 +13,18 @@ namespace CatchMe.Game
 
         #region Unity lifecycle
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (!_isActive)
             {
                 return;
             }
 
-            if (other.gameObject.CompareTag(Tag.Box))
+            if (other.CompareTag(Tag.GoodItem))
             {
                 GameService.Instance.ChangeLife(-1);
-            }
-            else
-            {
                 Destroy(other.gameObject);
             }
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            Destroy(other.gameObject);
         }
 
         #endregion

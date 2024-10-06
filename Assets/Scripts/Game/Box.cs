@@ -1,3 +1,4 @@
+using CatchMe.Services;
 using UnityEngine;
 
 namespace CatchMe.Game
@@ -17,6 +18,11 @@ namespace CatchMe.Game
 
         private void MoveWithMouse()
         {
+            if (PauseService.Instance.IsPaused)
+            {
+                return;
+            }
+
             Vector3 mousePosition = Input.mousePosition;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             SetXPosition(worldPosition.x);

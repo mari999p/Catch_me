@@ -5,6 +5,7 @@ namespace CatchMe.Game
         #region Variables
 
         public const string Box = "Box";
+        public const string GoodItem = "GoodItem";
 
         #endregion
     }

@@ -4,53 +4,56 @@ using UnityEngine;
 
 namespace CatchMe.Services
 {
-    public class GameService: SingletonMonoBehaviour<GameService>
+    public class GameService : SingletonMonoBehaviour<GameService>
     {
+        #region Variables
+
         [Header("Settings")]
         [SerializeField] private int _maxLives = 3;
-        
+
         [Header("Stats")]
         [SerializeField] private int _score;
         [SerializeField] private int _lives;
-        
-        
-        
+
+        #endregion
+
+        #region Events
+
+        public event Action OnGameOver;
+
         public event Action<int> OnLiveChanged;
 
         public event Action<int> OnScoreChanged;
-        
-        
+
+        #endregion
+
+        #region Properties
+
         public int Lives => _lives;
         public int Score => _score;
-        
-        protected override void Awake()
-        {
-            base.Awake();
 
-            _lives = _maxLives;
-            _score = 0;
-        }
+        #endregion
 
+        #region Unity lifecycle
 
-        // private void Start()
+        // protected override void Awake()
         // {
+        //     base.Awake();
+        //
         //     _lives = _maxLives;
-        //     _score = 0;
+        //    
         // }
+
+        #endregion
+
+        #region Public methods
+
         public void AddScore(int points)
         {
             _score += points;
             OnScoreChanged?.Invoke(_score);
         }
 
-        public void CheckGameEnd()
-        {
-            if (_lives <= 0)
-            {
-                Debug.LogError("GAME OVER!");
-               
-            }
-        }
         public void ChangeLife(int value)
         {
             _lives += value;
@@ -58,5 +61,21 @@ namespace CatchMe.Services
             OnLiveChanged?.Invoke(_lives);
             CheckGameEnd();
         }
+
+        public void CheckGameEnd()
+        {
+            if (_lives <= 0)
+            {
+                OnGameOver?.Invoke();
+            }
+        }
+
+        public void Reset()
+        {
+            _lives = _maxLives;
+            _score = 0;
+        }
+
+        #endregion
     }
 }

@@ -62,6 +62,11 @@ namespace CatchMe.Services
             return null;
         }
 
+        public void ResetFallSpeed()
+        {
+            _currentFallSpeed = 1f;
+        }
+
         private void SpawnPickUp(PickUp pickUpPrefab)
         {
             float randomX = Random.Range(-4f, 4f);
