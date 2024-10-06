@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Box
+  - GoodItem
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Box
   - Water
   - UI
-  - 
+  - PickUp
   - 
   - 
   - 
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: PickUp
     uniqueID: 1166769045
+    locked: 0
+  - name: GoodItem
+    uniqueID: 87519529
     locked: 0
