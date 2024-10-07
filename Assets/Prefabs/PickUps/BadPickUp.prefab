@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e96195801f45ee9a208a68a32833e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: 87e2452fe2c754248926c9a9ab93a467, type: 3}
   _minPoints: 5
 --- !u!50 &2639813727193568204
 Rigidbody2D:
