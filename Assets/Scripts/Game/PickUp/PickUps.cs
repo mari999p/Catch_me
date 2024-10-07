@@ -6,9 +6,13 @@ namespace CatchMe.Game.PickUp
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class PickUp : MonoBehaviour
     {
-        [SerializeField] private AudioClip _audioClip;
-       
+        #region Variables
 
+        [SerializeField] private AudioClip _audioClip;
+
+        #endregion
+
+        #region Unity lifecycle
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -19,10 +23,15 @@ namespace CatchMe.Game.PickUp
             }
         }
 
+        #endregion
+
+        #region Protected methods
+
         protected virtual void PerformActions()
         {
-            
             AudioService.Instance.PlaySfx(_audioClip);
         }
+
+        #endregion
     }
 }

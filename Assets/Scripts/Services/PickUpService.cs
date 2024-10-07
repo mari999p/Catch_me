@@ -12,12 +12,18 @@ namespace CatchMe.Services
     {
         #region Variables
 
+        [Header("Prefabs list with probabilities")]
         [SerializeField] private List<PickUpAndProbability> _itemVariants;
+
+        [Header("Interval settings")]
         [SerializeField] private float _spawnInterval = 2f;
-        [SerializeField] private float _fallSpeedIncrement = 0.1f;
+
+        [Header("Height Settings PickUp")]
         [SerializeField] private float _spawnHeight = 10f;
 
-        private float _currentFallSpeed = 1f;
+        [Header("Speed Settings")]
+        [SerializeField] private float _fallSpeedIncrement = 0.1f;
+        [SerializeField] private float _currentFallSpeed = 1f;
 
         #endregion
 
@@ -34,6 +40,15 @@ namespace CatchMe.Services
             {
                 probability.Validate();
             }
+        }
+
+        #endregion
+
+        #region Public methods
+
+        public void ResetFallSpeed()
+        {
+            _currentFallSpeed = 1f;
         }
 
         #endregion
@@ -62,16 +77,12 @@ namespace CatchMe.Services
             return null;
         }
 
-        public void ResetFallSpeed()
-        {
-            _currentFallSpeed = 1f;
-        }
-
         private void SpawnPickUp(PickUp pickUpPrefab)
         {
             float randomX = Random.Range(-4f, 4f);
             Vector3 spawnPosition = new(randomX, _spawnHeight, transform.position.z);
             PickUp pickUp = Instantiate(pickUpPrefab, spawnPosition, Quaternion.identity);
+
             Rigidbody2D component = pickUp.GetComponent<Rigidbody2D>();
             if (component != null)
             {

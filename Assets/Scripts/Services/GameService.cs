@@ -36,13 +36,18 @@ namespace CatchMe.Services
 
         #region Unity lifecycle
 
-        // protected override void Awake()
-        // {
-        //     base.Awake();
-        //
-        //     _lives = _maxLives;
-        //    
-        // }
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _lives = _maxLives;
+        }
+
+        public void Reset()
+        {
+            _lives = _maxLives;
+            _score = 0;
+        }
 
         #endregion
 
@@ -62,18 +67,16 @@ namespace CatchMe.Services
             CheckGameEnd();
         }
 
-        public void CheckGameEnd()
+        #endregion
+
+        #region Private methods
+
+        private void CheckGameEnd()
         {
             if (_lives <= 0)
             {
                 OnGameOver?.Invoke();
             }
-        }
-
-        public void Reset()
-        {
-            _lives = _maxLives;
-            _score = 0;
         }
 
         #endregion

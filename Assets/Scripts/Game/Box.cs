@@ -5,6 +5,14 @@ namespace CatchMe.Game
 {
     public class NewBehaviourScript : MonoBehaviour
     {
+        #region Variables
+
+        [Header("Border settings")]
+        [SerializeField] private float _screenLeft;
+        [SerializeField] private float _screenRight;
+
+        #endregion
+
         #region Unity lifecycle
 
         private void Update()
@@ -31,7 +39,12 @@ namespace CatchMe.Game
         private void SetXPosition(float x)
         {
             Vector3 currentPosition = transform.position;
-            currentPosition.x = x;
+
+            float screenLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, transform.position.z)).x +
+                               _screenLeft;
+            float screenRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, transform.position.z)).x -
+                                _screenRight;
+            currentPosition.x = Mathf.Clamp(x, screenLeft, screenRight);
             transform.position = currentPosition;
         }
 

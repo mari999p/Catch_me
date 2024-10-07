@@ -18,7 +18,6 @@ namespace CatchMe.Game.PickUp
         {
             base.PerformActions();
             GameService.Instance.AddScore(_maxPoints);
-            
         }
 
         #endregion

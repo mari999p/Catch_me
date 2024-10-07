@@ -1,13 +1,18 @@
-using System;
 using CatchMe.Utility;
 using UnityEngine;
 
 namespace CatchMe.Services
 {
-    public class PauseService: SingletonMonoBehaviour<PauseService>
+    public class PauseService : SingletonMonoBehaviour<PauseService>
     {
-        public event Action<bool> OnChanged;
+        #region Properties
+
         public bool IsPaused { get; private set; }
+
+        #endregion
+
+        #region Unity lifecycle
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -15,11 +20,17 @@ namespace CatchMe.Services
                 TogglePause();
             }
         }
+
+        #endregion
+
+        #region Public methods
+
         public void TogglePause()
         {
             IsPaused = !IsPaused;
             Time.timeScale = IsPaused ? 0 : 1;
-            OnChanged?.Invoke(IsPaused);
         }
+
+        #endregion
     }
 }

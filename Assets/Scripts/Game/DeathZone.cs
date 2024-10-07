@@ -7,7 +7,11 @@ namespace CatchMe.Game
     {
         #region Variables
 
+        [Header("Settings")]
         [SerializeField] private bool _isActive = true;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip _audioClip;
 
         #endregion
 
@@ -23,6 +27,7 @@ namespace CatchMe.Game
             if (other.CompareTag(Tag.GoodItem))
             {
                 GameService.Instance.ChangeLife(-1);
+                AudioService.Instance.PlaySfx(_audioClip);
                 Destroy(other.gameObject);
             }
         }
