@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CatchMe.Game
 {
-    public class NewBehaviourScript : MonoBehaviour
+    public class Box : MonoBehaviour
     {
         #region Variables
 
@@ -31,9 +31,16 @@ namespace CatchMe.Game
                 return;
             }
 
-            Vector3 mousePosition = Input.mousePosition;
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            SetXPosition(worldPosition.x);
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                Vector3 touchPosition = touch.position;
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(touchPosition);
+                SetXPosition(worldPosition.x);
+            }
+            // Vector3 mousePosition = Input.mousePosition;
+            // Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            // SetXPosition(worldPosition.x);
         }
 
         private void SetXPosition(float x)

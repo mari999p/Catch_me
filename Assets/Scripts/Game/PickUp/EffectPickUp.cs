@@ -3,22 +3,21 @@ using UnityEngine;
 
 namespace CatchMe.Game.PickUp
 {
-    public class EffectPickUp : PickUp
+    public class EffectPickUp : PickUps
     {
         #region Variables
 
         [Header(nameof(EffectPickUp))]
-        [Header("Damage")]
-        [SerializeField] private int _damage = 50;
+        [SerializeField] private int _minPoints = 50;
 
         [Header("Effect")]
-        [SerializeField] private Object _effectPrefab;
+        [SerializeField] private GameObject _effectPrefab;
 
         #endregion
 
         #region Unity lifecycle
 
-        private void Reset()
+        private void ResetGame()
         {
             GameService.Instance.Reset();
         }
@@ -30,22 +29,22 @@ namespace CatchMe.Game.PickUp
         protected override void PerformActions()
         {
             base.PerformActions();
-            Reset();
-            Explode();
+            ResetGame();
+            PlayExplosionVfx();
             Destroy(gameObject);
-            ApplyExplosionEffects();
+            ApplyScore();
         }
 
         #endregion
 
         #region Private methods
 
-        private void ApplyExplosionEffects()
+        private void  ApplyScore()
         {
-            GameService.Instance.AddScore(-_damage);
+            GameService.Instance.AddScore(-_minPoints);
         }
 
-        private void Explode()
+        private void PlayExplosionVfx()
         {
             if (_effectPrefab != null)
             {

@@ -1,20 +1,15 @@
-using CatchMe.Services;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace CatchMe.UI
 {
-    public class MenuScreen : MonoBehaviour, IPointerEnterHandler
+    public class MenuScreen : MonoBehaviour
     {
         #region Variables
 
         [Header("Button")]
         [SerializeField] private Button _startButton;
-
-        [Header("Audio")]
-        [SerializeField] private AudioClip _audioClip;
 
         #endregion
 
@@ -23,15 +18,6 @@ namespace CatchMe.UI
         private void Start()
         {
             _startButton.onClick.AddListener(OnStartButtonClicked);
-        }
-
-        #endregion
-
-        #region IPointerEnterHandler
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            AudioService.Instance.PlaySfx(_audioClip);
         }
 
         #endregion

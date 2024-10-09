@@ -28,8 +28,14 @@ namespace CatchMe.Game
             {
                 GameService.Instance.ChangeLife(-1);
                 AudioService.Instance.PlaySfx(_audioClip);
+            }
+
+            else if (other.CompareTag(Tag.BadItem))
+            {
                 Destroy(other.gameObject);
             }
+
+            Destroy(other.gameObject);
         }
 
         #endregion

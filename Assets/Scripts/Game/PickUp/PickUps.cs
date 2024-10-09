@@ -4,7 +4,7 @@ using UnityEngine;
 namespace CatchMe.Game.PickUp
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public abstract class PickUp : MonoBehaviour
+    public abstract class PickUps : MonoBehaviour
     {
         #region Variables
 
@@ -30,6 +30,16 @@ namespace CatchMe.Game.PickUp
         protected virtual void PerformActions()
         {
             AudioService.Instance.PlaySfx(_audioClip);
+        }
+
+        public void SetSpeed(float speed)
+        {
+            
+            Rigidbody2D component = GetComponent<Rigidbody2D>();
+            if (component != null)
+            {
+                component.velocity = new Vector2(0, speed);
+            }
         }
 
         #endregion

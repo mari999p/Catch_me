@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CatchMe.Game.PickUp
 {
-    public class LifePickUp : PickUp
+    public class LifePickUp : PickUps
     {
         #region Variables
 

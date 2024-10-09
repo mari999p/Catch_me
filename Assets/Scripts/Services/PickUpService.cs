@@ -46,7 +46,7 @@ namespace CatchMe.Services
 
         #region Public methods
 
-        public void ResetFallSpeed()
+        public void ResetFallSpeed() //сбрасывает скрость
         {
             _currentFallSpeed = 1f;
         }
@@ -55,7 +55,7 @@ namespace CatchMe.Services
 
         #region Private methods
 
-        private PickUp GetRandomPickUp()
+        private PickUps GetRandomPickUp()
         {
             float totalProbability = 0;
             foreach (PickUpAndProbability item in _itemVariants)
@@ -77,17 +77,13 @@ namespace CatchMe.Services
             return null;
         }
 
-        private void SpawnPickUp(PickUp pickUpPrefab)
+        private void SpawnPickUp(PickUps pickUpPrefab)
         {
             float randomX = Random.Range(-4f, 4f);
             Vector3 spawnPosition = new(randomX, _spawnHeight, transform.position.z);
-            PickUp pickUp = Instantiate(pickUpPrefab, spawnPosition, Quaternion.identity);
+            PickUps pickUp = Instantiate(pickUpPrefab, spawnPosition, Quaternion.identity);
 
-            Rigidbody2D component = pickUp.GetComponent<Rigidbody2D>();
-            if (component != null)
-            {
-                component.velocity = new Vector2(0, -_currentFallSpeed);
-            }
+            pickUp.SetSpeed(-_currentFallSpeed);
         }
 
         private IEnumerator SpawnPickUps()
@@ -95,7 +91,7 @@ namespace CatchMe.Services
             while (true)
             {
                 yield return new WaitForSeconds(_spawnInterval);
-                PickUp pickUp = GetRandomPickUp();
+                PickUps pickUp = GetRandomPickUp();
                 if (pickUp != null)
                 {
                     SpawnPickUp(pickUp);
@@ -106,24 +102,29 @@ namespace CatchMe.Services
         }
 
         #endregion
-    }
 
-    [Serializable]
-    public class PickUpAndProbability
-    {
-        #region Variables
+        #region Local data
 
-        public string name;
-        public PickUp pickUpPrefab;
-        [Range(0f, 100f)] public float probability;
-
-        #endregion
-
-        #region Public methods
-
-        public void Validate()
+        [Serializable]
+        private class PickUpAndProbability
         {
-            name = pickUpPrefab != null ? pickUpPrefab.name : string.Empty;
+            #region Variables
+
+            public string name;
+            public PickUps pickUpPrefab;
+            [Range(0f, 100f)]
+            public float probability;
+
+            #endregion
+
+            #region Public methods
+
+            public void Validate()
+            {
+                name = pickUpPrefab != null ? pickUpPrefab.name : string.Empty;
+            }
+
+            #endregion
         }
 
         #endregion
