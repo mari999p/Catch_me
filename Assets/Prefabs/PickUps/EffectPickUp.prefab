@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4621006408668875162}
   - component: {fileID: 3326358872771785711}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: coinDiamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 5732738566108145756}
   - component: {fileID: 2946696389067545204}
   - component: {fileID: 5963228047716252252}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: EffectPickUp
-  m_TagString: Untagged
+  m_TagString: BadItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: bd8857660a16ba549b8cc522d93d9117, type: 3}
-  _explosionDamage: 50
+  _damage: 50
   _effectPrefab: {fileID: 5985634496115995773, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
 --- !u!50 &2946696389067545204
 Rigidbody2D:
