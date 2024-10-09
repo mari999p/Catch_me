@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Box
   - GoodItem
+  - BadItem
   layers:
   - Default
   - TransparentFX
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: GoodItem
     uniqueID: 87519529
+    locked: 0
+  - name: BadItem
+    uniqueID: 3900183237
     locked: 0
